@@ -1,0 +1,66 @@
+﻿<Window x:Class="EncryptionTool.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EncryptionTool.WPF"
+        mc:Ignorable="d"
+        Title="加密/解密工具" Height="600" Width="800"
+        FontSize="14"
+        WindowStartupLocation="CenterScreen">
+    
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- 上半部：文字加密/解密 -->
+        <GroupBox Header="文字加密/解密" Grid.Row="0" Margin="0,0,0,5">
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Button x:Name="btnEncryptText" Content="加密文字" Width="100" Margin="0,0,5,0" Click="btnEncryptText_Click"/>
+                <Button x:Name="btnDecryptText" Content="解密文字" Width="100" Margin="0,0,5,0" Click="btnDecryptText_Click"/>
+                <TextBlock Text="金鑰：" VerticalAlignment="Center" Margin="5,0"/>
+                <PasswordBox x:Name="txtKey" Width="400" VerticalAlignment="Center"/>
+            </StackPanel>
+        </GroupBox>
+
+        <TextBox x:Name="txtInput" Grid.Row="1" 
+                 TextWrapping="Wrap" AcceptsReturn="True" 
+                 VerticalScrollBarVisibility="Auto"
+                 Margin="0,0,0,5"
+                 FontFamily="Consolas"/>
+
+        <!-- 中間：檔案加密/解密 -->
+        <GroupBox Header="檔案加密/解密" Grid.Row="2" Margin="0,0,0,5">
+            <Grid Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="btnEncryptFile" Content="加密檔案" Width="100" Margin="0,0,5,0" Click="btnEncryptFile_Click"/>
+                    <Button x:Name="btnDecryptFile" Content="解密檔案" Width="100" Margin="0,0,5,0" Click="btnDecryptFile_Click"/>
+                </StackPanel>
+                <TextBlock x:Name="txtSelectedFile" Grid.Column="1" 
+                          VerticalAlignment="Center"
+                          TextTrimming="CharacterEllipsis"/>
+            </Grid>
+        </GroupBox>
+
+        <!-- 下半部：結果顯示 -->
+        <TextBox x:Name="txtOutput" Grid.Row="3" 
+                 TextWrapping="Wrap" AcceptsReturn="True" 
+                 VerticalScrollBarVisibility="Auto"
+                 IsReadOnly="True"
+                 Background="LightGray"
+                 FontFamily="Consolas"/>
+
+        <StatusBar Grid.Row="4">
+            <StatusBarItem x:Name="statusMessage" Content="就緒"/>
+        </StatusBar>
+    </Grid>
+</Window>
